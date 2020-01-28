@@ -283,7 +283,7 @@ Error BaseAssembler::embedLabel(const Label& label, size_t dataSize) {
     re->_payload = le->offset();
   }
   else {
-    LabelLink* link = _code->newLabelLink(le, _section->id(), offset(), 0);
+    LabelLink* link = _code->newLabelLink(le, _section->id(), offset(), 0, dataSize);
     if (ASMJIT_UNLIKELY(!link))
       return reportError(DebugUtils::errored(kErrorOutOfMemory));
     link->relocId = re->id();

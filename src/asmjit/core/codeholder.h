@@ -181,6 +181,10 @@ struct LabelLink {
   size_t offset;
   //! Inlined rel8/rel32.
   intptr_t rel;
+  //! Size of the relative offset in bytes.
+  uint8_t relSize;
+  //! Reserved for future use, set to zero by asmjit.
+  uint8_t reserved[7];
 };
 
 // ============================================================================
@@ -843,7 +847,7 @@ public:
   //! Creates a new label-link used to store information about yet unbound labels.
   //!
   //! Returns `null` if the allocation failed.
-  ASMJIT_API LabelLink* newLabelLink(LabelEntry* le, uint32_t sectionId, size_t offset, intptr_t rel) noexcept;
+  ASMJIT_API LabelLink* newLabelLink(LabelEntry* le, uint32_t sectionId, size_t offset, intptr_t rel, size_t relSize) noexcept;
 
   //! Resolves cross-section links (`LabelLink`) associated with each label that
   //! was used as a destination in code of a different section. It's only useful
